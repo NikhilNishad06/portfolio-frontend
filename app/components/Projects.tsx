@@ -48,7 +48,7 @@ const Projects = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/projects')
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects`)
             .then(res => {
                 if (!res.ok) throw new Error('Failed to fetch projects');
                 return res.json();

@@ -25,7 +25,18 @@ const Contact = () => {
     setErrorMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+      
+      if (!backendUrl) {
+         throw new Error("Backend URL is not configured in environment variables.");
+      }
+
+      const normalizedUrl = backendUrl.endsWith('/') ? backendUrl.slice(0, -1) : backendUrl;
+      const apiEndpoint = `${normalizedUrl}/api/contact`;
+      
+      console.log("Submitting to:", apiEndpoint);
+
+      const response = await fetch(apiEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

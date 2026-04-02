@@ -70,7 +70,7 @@ const Skills = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/skills')
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/skills`)
             .then(res => {
                 if (!res.ok) throw new Error('Failed to fetch skills');
                 return res.json();
