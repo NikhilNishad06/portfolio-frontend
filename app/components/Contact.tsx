@@ -25,12 +25,8 @@ const Contact = () => {
     setErrorMessage("");
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "https://portfolio-backend-1-wprw.onrender.com";
       
-      if (!backendUrl) {
-         throw new Error("Backend URL is not configured in environment variables.");
-      }
-
       const normalizedUrl = backendUrl.endsWith('/') ? backendUrl.slice(0, -1) : backendUrl;
       const apiEndpoint = `${normalizedUrl}/api/contact`;
       

@@ -70,7 +70,10 @@ const Skills = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/skills`)
+        const backendBaseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "https://portfolio-backend-1-wprw.onrender.com";
+        const normalizedUrl = backendBaseUrl.endsWith('/') ? backendBaseUrl.slice(0, -1) : backendBaseUrl;
+        
+        fetch(`${normalizedUrl}/api/skills`)
             .then(res => {
                 if (!res.ok) throw new Error('Failed to fetch skills');
                 return res.json();
